@@ -15,16 +15,23 @@ app.get('/', function(req, res) {
 });
 
 // displays a list of applicants
-app.get('/applicants', function(req, res){
-	res.render('applicants');
+app.get('/applicants', function(req, res) {
+	model.Applicant.find( function(error, data) {
+		if (error)
+			console.log('cannot read applicants');
+		else 
+			res.render('applicants', {applicantData: data});
+		
+	});
 });
+
 app.get('/success', function(req, res){
 	//refer to success.jade template without the "/" in front of it because it's not a
 	//route
 	res.render('success');
 });
 
-// creates and applicant
+// creates an applicant
 app.post('/applicant', function(req, res){
 	// Here is where you need to get the data
 	// from the post body and store it in the database

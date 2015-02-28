@@ -3,5 +3,6 @@ extends layout
 block content
 	.container
 		h1 Applicants
-		ul#applications.list-unstyled
-			li Applicants should go here.
+		ul#applications.list-
+			each rec in applicantData
+				li Name: #{rec.name}
